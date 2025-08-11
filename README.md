@@ -32,6 +32,11 @@
 ![Transaction History Empty](screenshots/transaction-history-empty.png)
 ![Transaction History with Data](screenshots/transaction-history-with-data.png)
 
+### 💼 Account Balance Updates
+*Real-time account balance updates after successful transactions*
+
+![Updated Account Balance](screenshots/update-account-balance.png)
+
 ### ⚙️ Account Management
 *Secure account reset functionality*
 
