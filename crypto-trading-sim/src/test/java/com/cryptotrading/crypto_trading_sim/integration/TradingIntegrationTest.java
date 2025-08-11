@@ -21,10 +21,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Integration tests for Trading workflow - Testing complete trading scenarios
- * 🔧 FIXED: BigDecimal precision issues resolved
- */
+
 @SpringBootTest
 @TestPropertySource(properties = {
         "trading.fee.percentage=0.10",

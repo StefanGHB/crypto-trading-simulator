@@ -25,10 +25,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-/**
- * Unit tests for UserController - Testing REST API endpoints for user management
- * 🔧 FIXED: Fixed JSON number format expectations
- */
+
 @ExtendWith(MockitoExtension.class)
 class UserControllerTest {
 

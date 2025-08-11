@@ -5,7 +5,6 @@ import java.math.RoundingMode;
 
 /**
  * Test constants for consistent test data across all test classes
- * 🔧 FIXED: Consistent decimal precision and proper BigDecimal handling
  */
 public class TestConstants {
 

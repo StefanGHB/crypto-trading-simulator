@@ -1,26 +1,11 @@
-/**
- * ===============================================
- * CRYPTO TRADING SIMULATOR - INSTANT FRONTEND
- * ===============================================
- * ⚡ MAXIMUM SPEED - ZERO DELAYS
- * 🚀 Perfect synchronization with optimized backend
- * 🔧 FIXED: 5 знака след запетаята - ПОКАЗВА ВСИЧКИ ПРОМЕНИ!
- * 🛑 FIXED: Server shutdown detection and proper error handling
- * ⚡ PERFORMANCE OPTIMIZED: Batch DOM updates, throttled updates, lazy loading
- * 🔥 GPU OPTIMIZED: Reduced animation complexity, efficient rendering
- * 🎯 FIXED: SELL Modal Logic - показва криптовалута количество и правилни preview текстове
- * 🔧 FIXED: switchTradeType функция - правилно зареждане на crypto quantity при превключване
- * 📱 RESPONSIVE: Mobile-first card layouts with desktop table fallback
- * 🎨 NEW: Price Color Indication - Green for up, Red for down
- */
 
 class CryptoTradingApp {
     constructor() {
         this.config = {
-            apiBaseUrl: '',  // Same origin (static folder)
+            apiBaseUrl: '',
             websocketUrl: '/ws',
             reconnectInterval: 3000,
-            // ⚡ REMOVED: priceUpdateDebounce - NO DELAYS!
+
         };
 
         // Application State
@@ -33,7 +18,6 @@ class CryptoTradingApp {
             connectionStatus: 'disconnected',
             selectedCrypto: null,
             tradeType: 'buy',
-            // 🎯 NEW: Available crypto quantity for SELL operations
             availableCryptoQuantity: 0
         };
 
@@ -979,11 +963,7 @@ class CryptoTradingApp {
         return row;
     }
 
-    /**
-     * 📱 Create mobile/tablet crypto card
-     * 🎯 MOBILE: Only change percent in top right, price centered below
-     * 🖥️ TABLET: Price and change horizontal in top right corner
-     */
+
     createCryptoCard(crypto, rank) {
         const card = document.createElement('div');
         card.className = 'crypto-card';
@@ -1050,7 +1030,7 @@ class CryptoTradingApp {
             const changeContainer = row.querySelector('.change-container');
 
             if (priceElement) {
-                // 🎯 APPLY COLOR BASED ON DIRECTION - БЕЗ BORDER, САМО GLOW
+
                 priceElement.classList.remove('price-up', 'price-down', 'price-neutral');
 
                 if (priceDirection === 'up') {
@@ -1076,7 +1056,7 @@ class CryptoTradingApp {
                     }, 150);
                 });
 
-                // 🎯 AUTO-CLEAR COLOR CLASSES AFTER 800ms - МОМЕНТАЛНО!
+
                 setTimeout(() => {
                     priceElement.classList.remove('price-up', 'price-down', 'price-neutral');
                 }, 800);
@@ -1101,7 +1081,7 @@ class CryptoTradingApp {
             const changeContainer = card.querySelector('.crypto-card-change');
 
             priceElements.forEach(priceElement => {
-                // 🎯 APPLY COLOR BASED ON DIRECTION - БЕЗ BORDER, САМО GLOW
+
                 priceElement.classList.remove('price-up', 'price-down', 'price-neutral');
 
                 if (priceDirection === 'up') {
@@ -1127,7 +1107,7 @@ class CryptoTradingApp {
                     }, 150);
                 });
 
-                // 🎯 AUTO-CLEAR COLOR CLASSES AFTER 800ms - МОМЕНТАЛНО!
+
                 setTimeout(() => {
                     priceElement.classList.remove('price-up', 'price-down', 'price-neutral');
                 }, 800);
@@ -1240,7 +1220,7 @@ class CryptoTradingApp {
         this.resetTradeForm();
     }
 
-    // 🔧 FIXED: switchTradeType функция - правилно зареждане на crypto quantity при превключване
+
     async switchTradeType(type) {
         this.state.tradeType = type;
 
@@ -1253,7 +1233,7 @@ class CryptoTradingApp {
             this.elements.modalTitle.textContent = `${type === 'buy' ? 'Buy' : 'Sell'} ${this.state.selectedCrypto.name}`;
         }
 
-        // 🔧 ФИКС: Зарежда crypto quantity при превключване към sell
+
         if (type === 'sell' && this.state.selectedCrypto) {
             await this.loadCryptoQuantity(this.state.selectedCrypto.symbol);
         }
@@ -1641,27 +1621,22 @@ class CryptoTradingApp {
         }
     }
 
-    // ===============================================
-    // 🔧 ФИКСИРАНИ FORMATTING METHODS - 5 ЗНАКА СЛЕД ЗАПЕТАЯТА
-    // ===============================================
-
     formatPrice(price) {
         if (price == null) return '$0.00000';
         const numPrice = Number(price);
 
-        // ✅ ВИНАГИ 5 ЗНАКА СЛЕД ЗАПЕТАЯТА БЕЗ ЗАКРЪГЛЯВАНЕ
+
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
-            minimumFractionDigits: 5,  // ✅ МИНИМУМ 5 знака
-            maximumFractionDigits: 5   // ✅ МАКСИМУМ 5 знака - ПОКАЗВА ВСИЧКИ ПРОМЕНИ!
+            minimumFractionDigits: 5,
+            maximumFractionDigits: 5
         }).format(numPrice);
     }
 
     formatCurrency(amount) {
         if (amount == null) return '$0.00000';
 
-        // ✅ СЪЩО 5 ЗНАКА СЛЕД ЗАПЕТАЯТА ЗА CONSISTENCY
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
@@ -1673,7 +1648,7 @@ class CryptoTradingApp {
     formatNumber(number, decimals = 8) {
         if (number == null) return '0.00000';
         return new Intl.NumberFormat('en-US', {
-            minimumFractionDigits: 5,  // ✅ КОНСИСТЕНТНО 5 знака
+            minimumFractionDigits: 5,
             maximumFractionDigits: decimals
         }).format(Number(number));
     }
@@ -1685,9 +1660,9 @@ class CryptoTradingApp {
     }
 
     formatDate(dateString) {
-        // 🎯 FIXED: Subtract exactly 3 hours (180 minutes)
+
         const date = new Date(dateString);
-        const correctedDate = new Date(date.getTime() - (3 * 60 * 60 * 1000)); // -3 hours in milliseconds
+        const correctedDate = new Date(date.getTime() - (3 * 60 * 60 * 1000));
 
         return correctedDate.toLocaleString('en-US', {
             month: 'short',
@@ -1742,4 +1717,4 @@ setInterval(() => {
     if (app && app.stats) {
         console.log(`⚡ PERFORMANCE: ${app.stats.totalUpdatesProcessed}/${app.stats.totalUpdatesReceived} updates processed (${((app.stats.totalUpdatesProcessed/app.stats.totalUpdatesReceived)*100).toFixed(1)}% success rate)`);
     }
-}, 30000); // Every 30 seconds
+}, 30000);

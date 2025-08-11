@@ -26,10 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
-/**
- * Unit tests for KrakenWebSocketService - Testing WebSocket connection and real-time price updates
- * 🔧 FIXED: Proper initialization and reduced reliance on reflection
- */
+
 @ExtendWith(MockitoExtension.class)
 class KrakenWebSocketServiceTest {
 

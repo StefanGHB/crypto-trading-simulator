@@ -1,24 +1,4 @@
-/* ===============================================
-   🌆 CYBERPUNK CRYPTO TRADING SIMULATOR STYLES
-   ===============================================
-   🚀 PRODUCTION-READY RESPONSIVE CSS
-   ⚡ Perfect sync with HTML & JavaScript
-   🎯 Modern CyberPunk aesthetic
-   📱 MOBILE FIRST RESPONSIVE DESIGN
-   🔧 FIXED: Native browser arrows with cyberpunk styling
-   🔥 ENHANCED: Professional Market Section Design
-   🎨 FIXED: Pink gradient instead of green
-   🛠️ FIXED: Modal scrollbar cutting buttons issue
-   ⚡ FIXED: CSS containment removed for smooth scrolling
-   🎯 FIXED: Optimized animations for 60fps performance
-   ✨ NEW: ENHANCED HEADER - Modern & Beautiful
-   🚨 MEGA FIX: EPIC Reset Account Modal - PERFECT DESIGN
-   📱 RESPONSIVE: Mobile-first card layouts for all devices
-   =============================================== */
 
-/* ===============================================
-   CSS CUSTOM PROPERTIES (DESIGN SYSTEM)
-   =============================================== */
 :root {
   /* 🎨 CyberPunk Color Palette */
   --cyber-primary: #00f5ff;
@@ -4984,8 +4964,8 @@ h6 { font-size: 1rem; }
 @media (max-width: 767px) {
   .modal-overlay {
     /* 🔧 CRITICAL FIX: Премахваме align-items: flex-end */
-    align-items: center !important; /* ЦЕНТРИРАНО */
-    justify-content: center !important; /* ЦЕНТРИРАНО */
+    align-items: center !important;
+    justify-content: center !important;
     padding: var(--mobile-spacing-md);
   }
 
@@ -5343,11 +5323,3 @@ h6 { font-size: 1rem; }
     }
 }
 
-
-/* ===============================================
-   END OF CYBERPUNK STYLES - RESPONSIVE COMPLETE
-   🚨 MEGA RESPONSIVE: Mobile-first card layouts
-   📱 TABLET: Hybrid layouts with 2-column grids
-   🖥️ DESKTOP: Full table layouts preserved
-   ⚡ PERFORMANCE: Optimized for all devices
-   =============================================== */

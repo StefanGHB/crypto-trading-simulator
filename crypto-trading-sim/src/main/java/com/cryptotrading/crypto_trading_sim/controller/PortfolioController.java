@@ -272,12 +272,12 @@ public class PortfolioController {
     @GetMapping("/user/{userId}/dashboard")
     public ResponseEntity<?> getPortfolioDashboard(@PathVariable Long userId) {
         try {
-            // Get all necessary data for dashboard
+
             PortfolioService.PortfolioOverview overview = portfolioService.getPortfolioOverview(userId);
             List<PortfolioService.PortfolioAllocation> allocation = portfolioService.getPortfolioAllocation(userId);
             PortfolioService.PortfolioPerformance performance = portfolioService.getPortfolioPerformance(userId);
 
-            // Return combined dashboard data
+
             return ResponseEntity.ok(Map.of(
                     "overview", overview,
                     "allocation", allocation,
@@ -292,7 +292,6 @@ public class PortfolioController {
     }
 
     /**
-     * Get portfolio value history (simplified for now - returns current value)
      * GET /api/portfolio/user/{userId}/value-history
      */
     @GetMapping("/user/{userId}/value-history")
@@ -300,7 +299,6 @@ public class PortfolioController {
         try {
             PortfolioService.PortfolioSummary summary = portfolioService.getPortfolioSummary(userId);
 
-            // For now, return current value - in future this could track historical values
             return ResponseEntity.ok(Map.of(
                     "userId", userId,
                     "currentValue", summary.getTotalAccountValue(),

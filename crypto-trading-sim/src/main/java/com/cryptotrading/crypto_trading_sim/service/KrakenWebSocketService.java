@@ -30,14 +30,7 @@ import org.java_websocket.handshake.ServerHandshake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * ===============================================
- * 🎯 ФИНАЛЕН KRAKEN WEBSOCKET SERVICE - ТОЧНИ ТОП 20
- * ===============================================
- * ⚡ МАКСИМАЛНО ОПТИМИЗИРАНО за INSTANT real-time sync
- * 🚀 ZERO DELAYS - БЕЗ филтри за максимална скорост
- * 📋 ТОЧНИ ТОП 20 криптовалути според coding task
- */
+
 @Service
 public class KrakenWebSocketService {
 
@@ -74,47 +67,40 @@ public class KrakenWebSocketService {
     private final AtomicLong lastPriceUpdateTime = new AtomicLong(0);
 
     // Real-time optimized settings
-    private static final long MIN_CONNECTION_INTERVAL = 1000; // 1 секунда
-    private static final long RATE_LIMIT_BACKOFF = 5000; // 5 секунди за rate limit
-    private static final long HEARTBEAT_INTERVAL = 2000; // 2 секунди heartbeat
-    private static final long CONNECTION_TIMEOUT = 8000; // 8 секунди connection timeout
-    private static final long HEALTH_CHECK_INTERVAL = 3000; // 3 секунди health check
+    private static final long MIN_CONNECTION_INTERVAL = 1000;
+    private static final long RATE_LIMIT_BACKOFF = 5000;
+    private static final long HEARTBEAT_INTERVAL = 2000;
+    private static final long CONNECTION_TIMEOUT = 8000;
+    private static final long HEALTH_CHECK_INTERVAL = 3000;
 
     // Map of Kraken pair names to our symbols
     private Map<String, String> krakenPairToSymbolMap;
     private Set<String> subscribedPairs;
 
-    // ===============================================
-    // 🎯 ТОЧНИ ТОП 20 КРИПТОВАЛУТИ СПОРЕД CODING TASK
-    // ===============================================
-    private static final Map<String, String> TOP_20_KRAKEN_PAIRS = Map.ofEntries(
-            // ===============================================
-            // ТОП 1-10 - ОСНОВНИ КРИПТОВАЛУТИ (ВСИЧКИ ✅ ВАЛИДНИ)
-            // ===============================================
-            Map.entry("BTC", "BTC/USD"),      // #1 Bitcoin - King crypto ✅
-            Map.entry("ETH", "ETH/USD"),      // #2 Ethereum - Smart contracts ✅
-            Map.entry("XRP", "XRP/USD"),      // #3 XRP - Cross-border payments ✅
-            Map.entry("USDT", "USDT/USD"),    // #4 Tether - Major stablecoin ✅
-            Map.entry("BNB", "BNB/USD"),      // #5 BNB - Binance Chain ✅ НАЛИЧНО!
-            Map.entry("SOL", "SOL/USD"),      // #6 Solana - High performance ✅
-            Map.entry("USDC", "USDC/USD"),    // #7 USD Coin - Regulated stablecoin ✅
-            Map.entry("DOGE", "DOGE/USD"),    // #8 Dogecoin - Community-driven ✅
-            Map.entry("TRX", "TRX/USD"),      // #9 TRON - Entertainment platform ✅
-            Map.entry("ADA", "ADA/USD"),      // #10 Cardano - Academic blockchain ✅
 
-            // ===============================================
-            // ТОП 11-20 - ДОПЪЛНИТЕЛНИ КРИПТОВАЛУТИ (ВСИЧКИ ✅ ВАЛИДНИ)
-            // ===============================================
-            Map.entry("ALGO", "ALGO/USD"),    // #11 Algorand - Pure Proof of Stake ✅
-            Map.entry("XLM", "XLM/USD"),      // #12 Stellar - Cross-border transfers ✅
-            Map.entry("SUI", "SUI/USD"),      // #13 Sui Network ✅ НАЛИЧНО!
-            Map.entry("LINK", "LINK/USD"),    // #14 Chainlink - Oracle network ✅
-            Map.entry("BCH", "BCH/USD"),      // #15 Bitcoin Cash - Bitcoin fork ✅
-            Map.entry("HBAR", "HBAR/USD"),    // #16 Hedera - Enterprise blockchain ✅
-            Map.entry("AVAX", "AVAX/USD"),    // #17 Avalanche - Fast consensus ✅
-            Map.entry("LTC", "LTC/USD"),      // #18 Litecoin - Digital silver ✅
-            Map.entry("TON", "TON/USD"),      // #19 TonCoin ✅ НАЛИЧНО!
-            Map.entry("USDS", "USDS/USD")     // #20 USDS - Sky Dollar ✅ НАЛИЧНО!
+    private static final Map<String, String> TOP_20_KRAKEN_PAIRS = Map.ofEntries(
+
+            Map.entry("BTC", "BTC/USD"),
+            Map.entry("ETH", "ETH/USD"),
+            Map.entry("XRP", "XRP/USD"),
+            Map.entry("USDT", "USDT/USD"),
+            Map.entry("BNB", "BNB/USD"),
+            Map.entry("SOL", "SOL/USD"),
+            Map.entry("USDC", "USDC/USD"),
+            Map.entry("DOGE", "DOGE/USD"),
+            Map.entry("TRX", "TRX/USD"),
+            Map.entry("ADA", "ADA/USD"),
+
+            Map.entry("ALGO", "ALGO/USD"),
+            Map.entry("XLM", "XLM/USD"),
+            Map.entry("SUI", "SUI/USD"),
+            Map.entry("LINK", "LINK/USD"),
+            Map.entry("BCH", "BCH/USD"),
+            Map.entry("HBAR", "HBAR/USD"),
+            Map.entry("AVAX", "AVAX/USD"),
+            Map.entry("LTC", "LTC/USD"),
+            Map.entry("TON", "TON/USD"),
+            Map.entry("USDS", "USDS/USD")
     );
 
     @PostConstruct
@@ -324,7 +310,7 @@ public class KrakenWebSocketService {
             // ⚡ ZERO FILTERS - INSTANT PROCESSING
             // ===============================================
 
-            // САМО BASIC VALIDATION
+
             if (newPrice == null || newPrice.compareTo(BigDecimal.ZERO) <= 0) {
                 logger.warn("⚠️ Invalid price for {}: {}", ourSymbol, newPrice);
                 return;

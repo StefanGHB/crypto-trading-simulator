@@ -5,10 +5,7 @@ import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-/**
- * UserHolding entity representing a user's cryptocurrency holding/position
- * 🔧 PERFECT FIX: Proper fee inclusion in cost basis calculations with perfect logic
- */
+
 public class UserHolding {
     private Long id;
     private Long userId;
@@ -103,10 +100,7 @@ public class UserHolding {
         this.lastUpdated = LocalDateTime.now();
     }
 
-    /**
-     * 🔧 PERFECT METHOD: Add purchase with fees properly included
-     * This ensures that the true cost basis includes all trading fees
-     */
+
     public void addPurchaseWithFees(BigDecimal newQuantity, BigDecimal newPrice, BigDecimal fees, BigDecimal totalAmountPaid) {
         // Calculate existing total cost (already includes fees from previous purchases)
         BigDecimal existingTotalCost = this.totalInvested;
@@ -117,11 +111,10 @@ public class UserHolding {
         // New total invested including fees
         BigDecimal newTotalInvested = existingTotalCost.add(totalAmountPaid);
 
-        // Calculate new average buy price that includes fees
-        // This represents the true cost per unit including all fees
+
         BigDecimal newAverageBuyPrice = newTotalInvested.divide(totalNewQuantity, 8, RoundingMode.HALF_UP);
 
-        // 🔧 PERFECT DEBUG LOGGING
+
         System.out.println("=== PERFECT PURCHASE CALCULATION ===");
         System.out.println("Existing quantity: " + this.quantity);
         System.out.println("Existing total invested: " + existingTotalCost);
@@ -142,7 +135,7 @@ public class UserHolding {
     }
 
     /**
-     * 🔧 PERFECT: Reduce quantity for sale with proper cost basis adjustment
+     *  Reduce quantity for sale with proper cost basis adjustment
      */
     public void reduceSale(BigDecimal soldQuantity) {
         if (soldQuantity.compareTo(this.quantity) > 0) {
@@ -166,9 +159,6 @@ public class UserHolding {
         this.quantity = this.quantity.subtract(soldQuantity);
         this.totalInvested = this.totalInvested.subtract(soldCostBasis);
 
-        // Average buy price remains the same (cost per unit doesn't change)
-        // Only quantity and total invested change
-
         System.out.println("New quantity: " + this.quantity);
         System.out.println("New total invested: " + this.totalInvested);
         System.out.println("==============================");
@@ -184,8 +174,7 @@ public class UserHolding {
     }
 
     /**
-     * 🔧 PERFECT: Calculate unrealized P&L using proper cost basis
-     * Now uses totalInvested which includes fees, giving accurate P&L calculation
+     * Calculate unrealized P&L using proper cost basis
      */
     public BigDecimal calculateUnrealizedProfitLoss(BigDecimal currentPrice) {
         BigDecimal currentValue = getCurrentValue(currentPrice);
@@ -199,10 +188,6 @@ public class UserHolding {
         return quantity != null && quantity.compareTo(BigDecimal.ZERO) > 0;
     }
 
-    /**
-     * 🔧 PERFECT: Get true cost per unit including fees
-     * This is useful for debugging and validation purposes
-     */
     public BigDecimal getTrueCostPerUnit() {
         if (quantity == null || quantity.compareTo(BigDecimal.ZERO) <= 0) {
             return BigDecimal.ZERO;

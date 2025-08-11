@@ -24,10 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
-/**
- * Unit tests for TradingService - Testing the core trading logic
- * 🔧 FIXED: All mocking issues resolved
- */
+
 @ExtendWith(MockitoExtension.class)
 class TradingServiceTest {
 

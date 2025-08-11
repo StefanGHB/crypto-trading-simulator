@@ -216,8 +216,8 @@ public class PortfolioService {
                 .filter(p -> p.getUnrealizedPnLPercentage() != null)
                 .min((p1, p2) -> p1.getUnrealizedPnLPercentage().compareTo(p2.getUnrealizedPnLPercentage()));
 
-        // Calculate diversification score (simple: number of positions)
-        int diversificationScore = Math.min(positions.size() * 10, 100); // Max 100 for 10+ positions
+
+        int diversificationScore = Math.min(positions.size() * 10, 100);
 
         return new PortfolioPerformance(
                 overview.getOverallPnL(),

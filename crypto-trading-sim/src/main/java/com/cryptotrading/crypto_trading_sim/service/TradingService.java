@@ -20,11 +20,7 @@ import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Service layer for Trading-related business logic
- * Handles buy and sell operations with proper validations
- * 🔧 FIXED: PERFECT P&L calculation with proper fee handling
- */
+
 @Service
 @Transactional
 public class TradingService {
@@ -41,7 +37,7 @@ public class TradingService {
     @Autowired
     private TransactionDao transactionDao;
 
-    @Value("${trading.fee.percentage:0.10}")  // 🔧 FIXED: Default fee 0.1% instead of 0.00%
+    @Value("${trading.fee.percentage:0.10}")
     private BigDecimal tradingFeePercentage;
 
     @Value("${trading.max.decimal.places:8}")
@@ -94,10 +90,7 @@ public class TradingService {
         return executeBuyOrder(userId, cryptoSymbol, quantity, currentPrice, fees);
     }
 
-    /**
-     * Execute the actual buy order
-     * 🔧 FIXED: Properly includes fees in cost calculation for holdings
-     */
+
     private TradingResult executeBuyOrder(Long userId, String cryptoSymbol, BigDecimal quantity,
                                           BigDecimal currentPrice, BigDecimal fees) {
         try {
@@ -197,10 +190,7 @@ public class TradingService {
         return sellByQuantity(userId, cryptoSymbol, quantityToSell);
     }
 
-    /**
-     * Execute the actual sell order
-     * 🔧 PERFECT FIX: Correct realized P&L calculation using proper cost basis
-     */
+
     private TradingResult executeSellOrder(Long userId, String cryptoSymbol, BigDecimal quantity,
                                            BigDecimal currentPrice, BigDecimal fees) {
         try {
@@ -218,20 +208,18 @@ public class TradingService {
             UserHolding holding = holdingOpt.get();
             User user = getUserForTrading(userId);
 
-            // Calculate amounts
+
             BigDecimal grossAmount = quantity.multiply(currentPrice);
             BigDecimal netAmount = grossAmount.subtract(fees);
 
-            // 🔧 PERFECT FIX: Calculate realized profit/loss with CORRECT logic
-            // Step 1: Calculate the cost basis of the sold portion (average cost method)
+
             BigDecimal averageCostPerUnit = holding.getTotalInvested().divide(holding.getQuantity(), maxDecimalPlaces, RoundingMode.HALF_UP);
             BigDecimal soldCostBasis = quantity.multiply(averageCostPerUnit);
 
-            // Step 2: Calculate realized P&L = Revenue - Cost Basis - Sell Fees
-            // Note: Cost basis already includes the fees from purchase, so we only subtract sell fees
+
             BigDecimal realizedPnL = grossAmount.subtract(soldCostBasis).subtract(fees);
 
-            // 🔧 DEBUG LOGGING for perfect tracking
+
             System.out.println("=== PERFECT SELL CALCULATION ===");
             System.out.println("Crypto: " + cryptoSymbol);
             System.out.println("Quantity to sell: " + quantity);
@@ -354,9 +342,7 @@ public class TradingService {
         return cryptoOpt.get();
     }
 
-    /**
-     * 🔧 FIXED: Update user holding for purchase with proper fee inclusion
-     */
+
     private void updateUserHoldingForPurchase(Long userId, Long cryptoId, BigDecimal quantity,
                                               BigDecimal price, BigDecimal fees, BigDecimal totalAmount) {
         Optional<UserHolding> existingHolding = userHoldingDao.findByUserAndCrypto(userId, cryptoId);

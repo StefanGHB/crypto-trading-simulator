@@ -27,10 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
-/**
- * Unit tests for PortfolioService - Testing portfolio calculations and analysis
- * 🔧 FIXED: Removed unnecessary stubbings and improved mock setup
- */
+
 @ExtendWith(MockitoExtension.class)
 class PortfolioServiceTest {
 
