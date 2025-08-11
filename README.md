@@ -11,6 +11,15 @@
 
 ![Main Dashboard](screenshots/main-dashboard.png)
 
+### 📱 Complete Cryptocurrency List
+*All 20 supported cryptocurrencies with live market data*
+
+![Crypto List Part 1](screenshots/crypto-list-part1.png)
+![Crypto List Part 2](screenshots/crypto-list-part2.png)
+![Crypto List Part 3](screenshots/crypto-list-part3.png)
+![Crypto List Part 4](screenshots/crypto-list-part4.png)
+![Crypto List Part 5](screenshots/crypto-list-part5.png)
+
 ### 💰 Trading Operations
 *Buy and sell cryptocurrency with real-time price calculation*
 
@@ -27,15 +36,6 @@
 *Secure account reset functionality*
 
 ![Account Reset Modal](screenshots/account-reset-modal.png)
-
-### 📱 Complete Cryptocurrency List
-*All 20 supported cryptocurrencies with live market data*
-
-![Crypto List Part 1](screenshots/crypto-list-part1.png)
-![Crypto List Part 2](screenshots/crypto-list-part2.png)
-![Crypto List Part 3](screenshots/crypto-list-part3.png)
-![Crypto List Part 4](screenshots/crypto-list-part4.png)
-![Crypto List Part 5](screenshots/crypto-list-part5.png)
 
 ## 🎯 Project Overview
 
